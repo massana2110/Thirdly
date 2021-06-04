@@ -1,0 +1,39 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-fluid {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #999;
+}
+
+#canvas {
+  background-color: #fff;
+  border: 1px solid #333;
+  width: 30%;
+  height: 80%;
+}
+
+.controllers {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+p {
+  border: 1px solid #fff;
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+  padding: 5px 0px 10px 0px;
+  border-radius: 5px;
+  color: #fff;
+}
