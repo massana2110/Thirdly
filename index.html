@@ -10,7 +10,7 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <title>Thirdly App</title>
   </head>
   <body>
@@ -18,25 +18,50 @@
       <canvas id="canvas"></canvas>
 
       <div class="controllers">
-
+        <h3 class="text-center">Scale</h3>
         <div class="scale mb-4">
-            <button type="button" class="btn btn-outline-light">-</button>
-            <p id="lvl-scale"> <!-- scale lvl--> </p>
-            <button type="button" class="btn btn-outline-light">+</button>
+          <button id="minus-scale" type="button" class="btn btn-outline-light">
+            -
+          </button>
+          <p id="lvl-scale"><!-- scale lvl--></p>
+          <button id="add-scale" type="button" class="btn btn-outline-light">
+            +
+          </button>
         </div>
-
+        
+        <h3 class="text-center">Rotation</h3>
         <div class="rotation mb-4">
-            <button type="button" class="btn btn-outline-light">-</button>
-            <p id="lvl-rotation"> <!-- rotation lvl--> </p>
-            <button type="button" class="btn btn-outline-light">+</button>
+          <button
+            id="minus-rotation"
+            type="button"
+            class="btn btn-outline-light"
+          >
+            -
+          </button>
+          <p id="lvl-rotation"><!-- rotation lvl--></p>
+          <button id="add-rotation" type="button" class="btn btn-outline-light">
+            +
+          </button>
         </div>
 
+        <h3 class="text-center">Translation</h3>
         <div class="translation mb-4">
-            <button type="button" class="btn btn-outline-light">-</button>
-            <p id="lvl-translation"> <!-- translation lvl--> </p>
-            <button type="button" class="btn btn-outline-light">+</button>
+          <button
+            id="minus-translation"
+            type="button"
+            class="btn btn-outline-light"
+          >
+            -
+          </button>
+          <p id="lvl-translation"><!-- translation lvl--></p>
+          <button
+            id="add-translation"
+            type="button"
+            class="btn btn-outline-light"
+          >
+            +
+          </button>
         </div>
-
       </div>
     </div>
 
