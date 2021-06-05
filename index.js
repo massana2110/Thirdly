@@ -5,8 +5,11 @@ let lvlTranslation = 1;
 let x0 = 0;
 let y0 = 0;
 
-let a = 150; //escala de 100
-let b = 50;
+let a = 150; // escala de 100
+let b = 50; // escala 100
+
+let w = 2;
+let h = 2;
 
 let matrixTranslation = [
   1, 0, a,
@@ -14,7 +17,15 @@ let matrixTranslation = [
   0, 0, 1,
 ];
 
+let matrixScale = [
+  w, 0, 0,
+  0, h, 0,
+  0, 0, 1,
+]
+
 let matrixPoints = [ x0, y0, 1 ];
+
+let previousPoints = [];
 
 //html elements
 const lvlRotationLabel = document.getElementById('lvl-rotation');
@@ -93,6 +104,7 @@ const addTranslation = () => {
   lvlTranslation += 1;
   updateLabels('translation');
 
+  previousPoints.push({x: x0, y: y0})
   //operation of translate
   let matrixProduct = multiplyMatrices(matrixTranslation, matrixPoints)
 
@@ -120,6 +132,7 @@ const substractTranslation = () => {
 
   lvlTranslation -= 1;
   updateLabels('translation');
+
 };
 
 const addRotation = () => {
@@ -150,6 +163,22 @@ const addScale = () => {
 
   lvlScale += 1;
   updateLabels('scale');
+
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  canvas.width = 800;
+  canvas.height = 1000;
+  ctx.strokeStyle = '#CCC';
+  ctx.lineWith = 2;
+  drawGrid(100); // draw grid
+
+  ctx.beginPath();
+  ctx.scale(lvlScale, lvlScale)
+
+  ctx.rect(x0, y0, 100, 100);
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+  ctx.closePath();
 };
 
 const substractScale = () => {
@@ -160,6 +189,22 @@ const substractScale = () => {
 
   lvlScale -= 1;
   updateLabels('scale');
+
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  canvas.width = 800;
+  canvas.height = 1000;
+  ctx.strokeStyle = '#CCC';
+  ctx.lineWith = 2;
+  drawGrid(100); // draw grid
+
+  ctx.beginPath();
+  ctx.scale(lvlScale, lvlScale)
+
+  ctx.rect(x0, y0, 100, 100);
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+  ctx.closePath();
 };
 
 /**
