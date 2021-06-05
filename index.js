@@ -2,14 +2,16 @@
 let lvlScale = 1;
 let lvlRotation = 1;
 let lvlTranslation = 1;
-let x0 = 0;
-let y0 = 0;
+let x0 = 100;
+let y0 = 100;
 
 let a = 150; // escala de 100
 let b = 50; // escala 100
 
 let w = 2;
 let h = 2;
+
+let angle = 0; //pi radianes
 
 let matrixTranslation = [
   1, 0, a,
@@ -21,6 +23,12 @@ let matrixScale = [
   w, 0, 0,
   0, h, 0,
   0, 0, 1,
+]
+
+let matrixRotation = [
+  Math.cos(angle), Math.sin(angle), 0,
+  (-1) * Math.sin(angle), Math.cos(angle), 0,
+  0, 0, 1
 ]
 
 let matrixPoints = [ x0, y0, 1 ];
@@ -55,10 +63,6 @@ function multiplyMatrixAndPoint(matrix, point) {
   let c0r1 = matrix[ 3], c1r1 = matrix[ 4], c2r1 = matrix[ 5]
   let c0r2 = matrix[ 6], c1r2 = matrix[ 7], c2r2 = matrix[ 8]
 
-  console.log(c0r0, c1r0, c2r0)
-  console.log(c0r1, c1r1, c2r1)
-  console.log(c0r2, c1r2, c2r2)
-
   // Now set some simple names for the point
   let x = point[0];
   let y = point[1];
@@ -66,8 +70,6 @@ function multiplyMatrixAndPoint(matrix, point) {
 
   // Multiply the point against each part of the 1st column, then add together
   let resultX = (x * c0r0) + (y * c1r0) + (z * c2r0)
-
-  console.log("resultX", resultX);
 
   // Multiply the point against each part of the 2nd column, then add together
   let resultY = (x * c0r1) + (y * c1r1) + (z * c2r1)
@@ -78,7 +80,7 @@ function multiplyMatrixAndPoint(matrix, point) {
   return [resultX, resultY, resultZ];
 }
 
-//matrixB • matrixA
+//matrixA • matrixB
 function multiplyMatrices(matrixA, matrixB) {
   // Slice the second matrix up into rows
   let row0 = [matrixB[ 0], matrixB[ 1], matrixB[ 2]];
@@ -143,6 +145,24 @@ const addRotation = () => {
 
   lvlRotation += 1;
   updateLabels('rotation');
+
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  canvas.width = 800;
+  canvas.height = 1000;
+  ctx.strokeStyle = '#CCC';
+  ctx.lineWith = 2;
+  drawGrid(100); // draw grid
+
+  ctx.beginPath();
+  ctx.rotate((20 * (lvlRotation - 1)) * Math.PI / 180);
+  ctx.rect(x0, y0, 100, 100);
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+  ctx.closePath();
+
+  
+  
 };
 
 const substractRotation = () => {
@@ -153,6 +173,23 @@ const substractRotation = () => {
 
   lvlRotation -= 1;
   updateLabels('rotation');
+
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  canvas.width = 800;
+  canvas.height = 1000;
+  ctx.strokeStyle = '#CCC';
+  ctx.lineWith = 2;
+  drawGrid(100); // draw grid
+
+  ctx.beginPath();
+
+  ctx.rotate((20 * (lvlRotation - 1)) * Math.PI / 180);
+
+  ctx.rect(x0, y0, 100, 100);
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+  ctx.closePath();
 };
 
 const addScale = () => {
